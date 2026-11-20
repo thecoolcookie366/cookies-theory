@@ -8,7 +8,7 @@ var id = "the_cookie_formula";
 var name = "Cookie's Theory";
 var description = "Calculate the value of tau by using alpha, delta and infinity.";
 var authors = "thecoolcookie366";
-var version = 6;
+var version = 7;
 
 var alpha, delta, infinity;
 var aleph = BigNumber.ZERO;
@@ -557,12 +557,12 @@ var getQ3 = (level) => BigNumber.from(1 + 0.01 * level);
 
 var getQuaternaryEntries = () => [
     new QuaternaryEntry("\\alpha", alpha.value.toString(3)),
-    new QuaternaryEntry("\\dot{\\alpha}", alpha.value >= BigNumber.TEN.pow(100) ? rateAlpha.toString(6) : null),
+    new QuaternaryEntry("\\dot{\\alpha}", alpha.value >= BigNumber.TEN.pow(50) ? rateAlpha.toString(6) : null),
     new QuaternaryEntry("\\Delta", delta.value > BigNumber.ZERO ? delta.value.toString(3) : null),
-    new QuaternaryEntry("\\dot{\\Delta}", delta.value >= BigNumber.from(1e10) ? rateDelta.toString(6) : null),
+    new QuaternaryEntry("\\dot{\\Delta}", delta.value >= BigNumber.from(1e5) ? rateDelta.toString(6) : null),
     new QuaternaryEntry("\\infty", infinity.value > BigNumber.ZERO ? infinity.value.toString(3) : null),
     new QuaternaryEntry("\\dot{\\infty}", infinity.value > BigNumber.from(0.01) ? rateInf.toString(6) : null),
-    new QuaternaryEntry("\\aleph", aleph > BigNumber.ONE ? aleph.toString(3) : null),
+    new QuaternaryEntry("\\aleph", aleph > BigNumber.from(0.1) ? aleph.toString(3) : null),
     new QuaternaryEntry("\\dot{\\aleph}", aleph > BigNumber.ONE ? rateAleph.toString(6) : null)
 ];
 
