@@ -8,7 +8,7 @@ var id = "the_cookie_formula";
 var name = "Cookie's Theory";
 var description = "Calculate the value of tau by using alpha, delta and infinity.";
 var authors = "thecoolcookie366";
-var version = 4;
+var version = 5;
 
 var alpha, delta, infinity;
 var aleph = BigNumber.ZERO;
@@ -87,7 +87,7 @@ var init = () => {
     }
 
     {
-        let getDesc = (level) => "w=2^{" + level + "}";
+        let getDesc = (level) => "w=" + (wBoost.level > 0 ? "3" : "2") + "^{" + level + "}";
         let getInfo = (level) => "w=" + getW(level).toString(0);
         w = theory.createUpgrade(3, delta, new ExponentialCost(1e12, Math.log2(125)));
         w.getDescription = (_) => Utils.getMath(getDesc(w.level));
@@ -162,6 +162,7 @@ var init = () => {
         permPubBoost.maxLevel = 5;
         permPubBoost.getDescription = (_) => "Publication Exp +" + (permPubBoost.level * 5);
         permPubBoost.getInfo = (_) => "Increases Publication multiplier exponent by +5 per level";
+        permPubBoost.boughtOrRefunded = (_) => theory.invalidatePrimaryEquation();
     }
 
     {
@@ -172,6 +173,7 @@ var init = () => {
             return "Synergy (" + Utils.getMath("(1+\\Delta)^{" + exp + "}, (1+\\infty)^{" + exp + "}") + ")";
         };
         permSynergy.getInfo = (_) => "Permanently raises Δ and ∞ cascade exponents from 0.15 to 0.25";
+        permSynergy.boughtOrRefunded = (_) => theory.invalidateSecondaryEquation();
     }
 
     {
@@ -264,6 +266,7 @@ var init = () => {
         wBoost = theory.createMilestoneUpgrade(7, 1);
         wBoost.getDescription = (_) => "Upgrade " + Utils.getMath("w") + " base from " + Utils.getMath("2") + " to " + Utils.getMath("3");
         wBoost.getInfo = (_) => "Changes " + Utils.getMath("w") + " formula from " + Utils.getMath("2^{\\text{level}}") + " to " + Utils.getMath("3^{\\text{level}}");
+        wBoost.boughtOrRefunded = (_) => w.invalidate();
     }
 
     {
@@ -495,17 +498,42 @@ var getSecondaryEquation = () => {
         term1 = "c_1^{" + (1 + 0.1 * c1Exp.level).toFixed(1) + "}";
     }
 
-    let term2 = expTier.level >= 2 ? "c_2^{q_2}" : "c_2";
-    let term3 = expTier.level >= 3 ? "c_3^{q_3}" : "c_3";
-    let synergyExp = permSynergy.level > 0 ? "0.25" : "0.15";
+    let term2 = "c_2";
+    if (expTier.level >= 2 && c2Exp.level > 0) {
+        term2 = "c_2^{q_2 + " + (0.1 * c2Exp.level).toFixed(1) + "}";
+    } else if (expTier.level >= 2) {
+        term2 = "c_2^{q_2}";
+    } else if (c2Exp.level > 0) {
+        term2 = "c_2^{" + (1 + 0.1 * c2Exp.level).toFixed(1) + "}";
+    }
 
-    let row1 = "\\dot{\\alpha} = x y z \\cdot " + term1 + " " + term2 + " " + term3 + " (1+\\Delta)^{" + synergyExp + "}";
-    let row2 = "\\dot{\\Delta} = \\alpha^{0.2}(1+\\infty)^{" + synergyExp + "}";
-    let row3 = "\\dot{\\infty} = w \\cdot \\log_{10}(\\tau)/\\text{h}";
-    let row4 = "\\dot{\\aleph} = \\ln(1+\\infty)(1+\\Delta)^{0.1}";
+    let term3 = "c_3";
+    if (expTier.level >= 3 && c3Exp.level > 0) {
+        term3 = "c_3^{q_3 + " + (0.1 * c3Exp.level).toFixed(1) + "}";
+    } else if (expTier.level >= 3) {
+        term3 = "c_3^{q_3}";
+    } else if (c3Exp.level > 0) {
+        term3 = "c_3^{" + (1 + 0.1 * c3Exp.level).toFixed(1) + "}";
+    }
+
+    let termX = xExp.level > 0 ? "x^{" + (1 + 0.05 * xExp.level).toFixed(2) + "}" : "x";
+    let termY = yExp.level > 0 ? "y^{" + (1 + 0.05 * yExp.level).toFixed(2) + "}" : "y";
+    let termZ = zExp.level > 0 ? "z^{" + (1 + 0.1 * zExp.level).toFixed(1) + "}" : "z";
+
+    let synergyExp = permSynergy.level > 0 ? 0.25 : 0.15;
+    let dAlphaExp = deltaAlphaExp.level > 0 ? "0.25" : "0.2";
+    let dInfExp = (synergyExp + 0.05 * deltaInfExp.level).toFixed(2);
+    let infPrefix = infTauBoost.level > 0 ? "10^{" + infTauBoost.level + "}" : "";
+    let alephPrefix = alephMult.level > 0 ? "5^{" + alephMult.level + "}" : "";
+    let alephDExp = alephDeltaExp.level > 0 ? "0.2" : "0.1";
+
+    let row1 = "\\dot{\\alpha} = " + termX + " " + termY + " " + termZ + " \\cdot " + term1 + " " + term2 + " " + term3 + " (1+\\Delta)^{" + synergyExp + "}";
+    let row2 = "\\dot{\\Delta} = \\alpha^{" + dAlphaExp + "}(1+\\infty)^{" + dInfExp + "}";
+    let row3 = "\\dot{\\infty} = " + infPrefix + "w \\cdot \\log_{10}(\\tau)/\\text{h}";
+    let row4 = "\\dot{\\aleph} = " + alephPrefix + "\\ln(1+\\infty)(1+\\Delta)^{" + alephDExp + "}";
 
     return "\\begin{matrix}" + row1 + " \\\\ " + row2 + " \\\\ " + row3 + " \\\\ " + row4 + "\\end{matrix}";
-}
+};
 
 var getPublicationMultiplier = (tau) => tau.pow(40 + 5 * permPubBoost.level);
 var getPublicationMultiplierFormula = (symbol) => "{" + symbol + "}^{" + (40 + 5 * permPubBoost.level) + "}";
@@ -532,10 +560,10 @@ var getQuaternaryEntries = () => [
     new QuaternaryEntry("\\dot{\\alpha}", alpha.value >= BigNumber.TEN.pow(100) ? rateAlpha.toString(6) : null),
     new QuaternaryEntry("\\Delta", delta.value > BigNumber.ZERO ? delta.value.toString(3) : null),
     new QuaternaryEntry("\\dot{\\Delta}", delta.value >= BigNumber.from(1e10) ? rateDelta.toString(6) : null),
-    new QuaternaryEntry("\\infty", infinity.value > BigNumber.from(0.01) ? infinity.value.toString(3) : null),
-    new QuaternaryEntry("\\dot{\\infty}", infinity.value > BigNumber.TEN ? rateInf.toString(6) : null),
+    new QuaternaryEntry("\\infty", infinity.value > BigNumber.ZERO ? infinity.value.toString(3) : null),
+    new QuaternaryEntry("\\dot{\\infty}", infinity.value > BigNumber.from(0.01) ? rateInf.toString(6) : null),
     new QuaternaryEntry("\\aleph", aleph > BigNumber.ONE ? aleph.toString(3) : null),
-    new QuaternaryEntry("\\dot{\\aleph}", aleph > BigNumber.from(2500) ? rateAleph.toString(6) : null)
+    new QuaternaryEntry("\\dot{\\aleph}", aleph > BigNumber.ONE ? rateAleph.toString(6) : null)
 ];
 
 var postPublish = () => {
