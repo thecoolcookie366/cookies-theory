@@ -8,7 +8,7 @@ var id = "the_cookie_formula";
 var name = "Cookie's Theory";
 var description = "Calculate the value of tau by using alpha, delta and infinity.";
 var authors = "thecoolcookie366";
-var version = 5;
+var version = 6;
 
 var alpha, delta, infinity;
 var aleph = BigNumber.ZERO;
@@ -266,7 +266,7 @@ var init = () => {
         wBoost = theory.createMilestoneUpgrade(7, 1);
         wBoost.getDescription = (_) => "Upgrade " + Utils.getMath("w") + " base from " + Utils.getMath("2") + " to " + Utils.getMath("3");
         wBoost.getInfo = (_) => "Changes " + Utils.getMath("w") + " formula from " + Utils.getMath("2^{\\text{level}}") + " to " + Utils.getMath("3^{\\text{level}}");
-        wBoost.boughtOrRefunded = (_) => w.invalidate();
+        wBoost.boughtOrRefunded = (_) => theory.invalidateSecondaryEquation();
     }
 
     {
