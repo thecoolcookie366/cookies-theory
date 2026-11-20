@@ -8,7 +8,7 @@ var id = "the_cookie_formula";
 var name = "Cookie's Theory";
 var description = "Calculate the value of tau by using alpha, delta and infinity.";
 var authors = "thecoolcookie366";
-var version = 1;
+var version = 2;
 
 var alpha, delta, infinity;
 var aleph = BigNumber.ZERO;
@@ -202,7 +202,7 @@ var init = () => {
         };
     }
 
-    theory.setMilestoneCost(new LinearCost(5, 15));
+    theory.setMilestoneCost(new LinearCost(0.02, 0.15));
 
     {
         expTier = theory.createMilestoneUpgrade(0, 3);
@@ -410,17 +410,17 @@ var init = () => {
         () => alpha.value >= BigNumber.TWO.pow(1024));
 
     chapter9 = theory.createStoryChapter(8, "Chapter 9: Wall",
-        "τ crosses 1e100, the boundary where ordinary theories softcap.\n\n" +
+        "τ crosses 100, the boundary where ordinary theories softcap.\n\n" +
         "Yet the box keeps going, waiting for the final incrase.\n" +
         "Only Limitless can carry the equation any further.",
-        () => getTau() >= BigNumber.TEN.pow(100));
+        () => getTau() >= BigNumber.TEN.pow(2));
 
     chapter10 = theory.createStoryChapter(9, "Chapter 10: Cookie's Theory",
-        "At 1e600 τ, the notepad's final blank page fills itself in with glowing ink:\n\n" +
+        "At 1e15 τ, the notepad's final blank page fills itself in with glowing ink:\n\n" +
         "Q.E.D.\n\n" +
         "The attic, the box, and the universe are now one equation.\n" +
         "Cookie's Theory is proven.",
-        () => getTau() >= BigNumber.TEN.pow(600));
+        () => getTau() >= BigNumber.TEN.pow(15));
 
     updateAvailability();
 }
@@ -507,8 +507,8 @@ var getSecondaryEquation = () => {
     return "\\begin{matrix}" + row1 + " \\\\ " + row2 + " \\\\ " + row3 + " \\\\ " + row4 + "\\end{matrix}";
 }
 
-var getPublicationMultiplier = (tau) => tau.pow(25 + 5 * permPubBoost.level);
-var getPublicationMultiplierFormula = (symbol) => "{" + symbol + "}^{" + (25 + 5 * permPubBoost.level) + "}";
+var getPublicationMultiplier = (tau) => tau.pow(40 + 5 * permPubBoost.level);
+var getPublicationMultiplierFormula = (symbol) => "{" + symbol + "}^{" + (40 + 5 * permPubBoost.level) + "}";
 var getTau = () => alpha.value.pow(tauExpBoost.level > 0 ? 0.0012 : 0.001);
 var get2DGraphValue = () => {
     let val = alpha.value.abs();
