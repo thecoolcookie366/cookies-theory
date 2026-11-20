@@ -8,7 +8,7 @@ var id = "the_cookie_formula";
 var name = "Cookie's Theory";
 var description = "Calculate the value of tau by using alpha, delta and infinity.";
 var authors = "thecoolcookie366";
-var version = 3;
+var version = 4;
 
 var alpha, delta, infinity;
 var aleph = BigNumber.ZERO;
@@ -327,32 +327,32 @@ var init = () => {
     catTau = theory.createAchievementCategory(4, "Tau");
     catSecrets = theory.createAchievementCategory(5, "Secrets");
 
-    achievement1 = theory.createAchievement(0, catAlpha, "And so, it begins.", "Reach 1 α.", () => alpha.value >= 1);
-    achievement2 = theory.createAchievement(1, catAlpha, "Limits: First Edition", "Reach 2,147,483,648 α.", () => alpha.value >= BigNumber.TWO.pow(31));
-    achievement3 = theory.createAchievement(2, catAlpha, "Limits: Second Edition", "Reach 1.7976e308 α.", () => alpha.value >= BigNumber.TWO.pow(1024));
-    achievement4 = theory.createAchievement(3, catAlpha, "You Can Only Go So Far", "Reach ee8.811 α.", () => alpha.value >= BigNumber.TWO.pow(BigNumber.TWO.pow(31)));
+    achievement1 = theory.createAchievement(0, catAlpha, "And so, it begins. (1)", "Reach 1 α.", () => alpha.value >= 1);
+    achievement2 = theory.createAchievement(1, catAlpha, "Limits: First Edition (2.1e9)", "Reach 2,147,483,648 α.", () => alpha.value >= BigNumber.TWO.pow(31));
+    achievement3 = theory.createAchievement(2, catAlpha, "Limits: Second Edition (1.79e308)", "Reach 1.7976e308 α.", () => alpha.value >= BigNumber.TWO.pow(1024));
+    achievement4 = theory.createAchievement(3, catAlpha, "You Can Only Go So Far (ee8.811)", "Reach ee8.811 α.", () => alpha.value >= BigNumber.TWO.pow(BigNumber.TWO.pow(31)));
 
-    theory.createAchievement(4, catDelta, "Ooo, triangles!", "Reach 10 Δ.", () => delta.value >= 10);
-    theory.createAchievement(5, catDelta, "Adding the 'e'", "Reach 1e10 Δ.", () => delta.value >= 1e10);
-    theory.createAchievement(6, catDelta, "Limits: Thi- no.", "Reach 1.7976e308 Δ.", () => delta.value >= BigNumber.TWO.pow(1024));
-    theory.createAchievement(7, catDelta, "And you will see me again.", "Reach 2e1024 Δ.", () => delta.value >= BigNumber.TWO * BigNumber.TEN.pow(1024));
+    theory.createAchievement(4, catDelta, "Ooo, triangles! (10)", "Reach 10 Δ.", () => delta.value >= 10);
+    theory.createAchievement(5, catDelta, "Adding the 'e' (1e10)", "Reach 1e10 Δ.", () => delta.value >= 1e10);
+    theory.createAchievement(6, catDelta, "Limits: Thi- no. (1.79e308)", "Reach 1.7976e308 Δ.", () => delta.value >= BigNumber.TWO.pow(1024));
+    theory.createAchievement(7, catDelta, "And you will see me again. (2e1024)", "Reach 2e1024 Δ.", () => delta.value >= BigNumber.TWO * BigNumber.TEN.pow(1024));
 
-    theory.createAchievement(8, catInfinity, "It's flipped!", "Reach 1 ∞.", () => infinity.value >= 1);
-    theory.createAchievement(9, catInfinity, "...or is it?", "Reach 1e3 ∞.", () => infinity.value >= 1e3);
-    theory.createAchievement(10, catInfinity, "A lot of Infinity", "Reach 1e10 ∞.", () => infinity.value >= 1e10);
-    theory.createAchievement(11, catInfinity, "Too much to count", "Reach 1e100 ∞.", () => infinity.value >= 1e100);
+    theory.createAchievement(8, catInfinity, "It's flipped! (1)", "Reach 1 ∞.", () => infinity.value >= 1);
+    theory.createAchievement(9, catInfinity, "...or is it? (1e3)", "Reach 1e3 ∞.", () => infinity.value >= 1e3);
+    theory.createAchievement(10, catInfinity, "A lot of Infinity (1e10)", "Reach 1e10 ∞.", () => infinity.value >= 1e10);
+    theory.createAchievement(11, catInfinity, "Too much to count (1e100)", "Reach 1e100 ∞.", () => infinity.value >= 1e100);
 
-    theory.createAchievement(12, catAleph, "What's this weird symbol?", "Reach 1 ℵ.", () => aleph >= 1);
-    theory.createAchievement(13, catAleph, "It's countable!", "Reach 100 ℵ.", () => aleph >= 1e2);
-    theory.createAchievement(14, catAleph, "One Percent", "Reach 1e4 ℵ.", () => aleph >= 1e4);
-    theory.createAchievement(15, catAleph, "Patience", "Reach 1e8 ℵ.", () => aleph >= 1e8);
+    theory.createAchievement(12, catAleph, "What's this weird symbol? (1)", "Reach 1 ℵ.", () => aleph >= 1);
+    theory.createAchievement(13, catAleph, "It's countable! (100)", "Reach 100 ℵ.", () => aleph >= 1e2);
+    theory.createAchievement(14, catAleph, "One Percent (1e4)", "Reach 1e4 ℵ.", () => aleph >= 1e4);
+    theory.createAchievement(15, catAleph, "Patience (1e8)", "Reach 1e8 ℵ.", () => aleph >= 1e8);
 
-    achievement5 = theory.createAchievement(16, catTau, "Slow Increases", "Reach 1.05 τ.", () => getTau() >= 1.05);
-    achievement6 = theory.createAchievement(17, catTau, "Quarter Way There", "Reach 1.25 τ.", () => getTau() >= 1.25);
-    achievement7 = theory.createAchievement(18, catTau, "Do you want a Tau too?", "Reach 2 τ.", () => getTau() >= 2);
-    achievement8 = theory.createAchievement(19, catTau, "Tenacious Tau", "Reach 10 τ.", () => getTau() >= 10);
-    achievement9 = theory.createAchievement(20, catTau, "That's a tau!", "Reach 1,000 τ.", () => getTau() >= 1000);
-    theory.createAchievement(21, catTau, "What now?", "Reach 1e10 τ.", () => getTau() >= BigNumber.TEN.pow(10));
+    achievement5 = theory.createAchievement(16, catTau, "Slow Increases (1.05)", "Reach 1.05 τ.", () => getTau() >= 1.05);
+    achievement6 = theory.createAchievement(17, catTau, "Quarter Way There (1.25)", "Reach 1.25 τ.", () => getTau() >= 1.25);
+    achievement7 = theory.createAchievement(18, catTau, "Do you want a Tau too? (2)", "Reach 2 τ.", () => getTau() >= 2);
+    achievement8 = theory.createAchievement(19, catTau, "Tau or Tav (10)", "Reach 10 τ.", () => getTau() >= 10);
+    achievement9 = theory.createAchievement(20, catTau, "That's a tau! (1,000)", "Reach 1,000 τ.", () => getTau() >= 1000);
+    theory.createAchievement(21, catTau, "What now? (1e10)", "Reach 1e10 τ.", () => getTau() >= BigNumber.TEN.pow(10));
 
     secretAchievement1 = theory.createSecretAchievement(22, catSecrets, "A Bit Excessive", "Unlock all 3 variable exponents (q1, q2, and q3).", "Get the formula completed.", () => expTier.level >= 3);
     secretAchievement2 = theory.createSecretAchievement(23, catSecrets, "Useless Upgrades", "Buy 5 levels of x while keeping c2 at level 0.", "Who needs c2 anyway?", () => x.level >= 5 && c2.level == 0);
