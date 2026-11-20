@@ -8,7 +8,7 @@ var id = "the_cookie_formula";
 var name = "Cookie's Theory";
 var description = "Calculate the value of tau by using alpha, delta and infinity.";
 var authors = "thecoolcookie366";
-var version = 2;
+var version = 3;
 
 var alpha, delta, infinity;
 var aleph = BigNumber.ZERO;
@@ -348,11 +348,11 @@ var init = () => {
     theory.createAchievement(15, catAleph, "Patience", "Reach 1e8 ℵ.", () => aleph >= 1e8);
 
     achievement5 = theory.createAchievement(16, catTau, "Slow Increases", "Reach 1.05 τ.", () => getTau() >= 1.05);
-    achievement6 = theory.createAchievement(17, catTau, "Do you want a Tau too?", "Reach 2 τ.", () => getTau() >= 2);
-    achievement7 = theory.createAchievement(18, catTau, "That's a tau!", "Reach 1000 τ.", () => getTau() >= 1000);
-    achievement8 = theory.createAchievement(19, catTau, "Tau for breakfast", "Reach 1e10 τ.", () => getTau() >= BigNumber.TEN.pow(10));
-    achievement9 = theory.createAchievement(20, catTau, "Hundreds of digits", "Reach 1e100 τ.", () => getTau() >= BigNumber.TEN.pow(100));
-    theory.createAchievement(21, catTau, "What now?", "Reach 1e600 τ.", () => getTau() >= BigNumber.TEN.pow(600));
+    achievement6 = theory.createAchievement(17, catTau, "Quarter Way There", "Reach 1.25 τ.", () => getTau() >= 1.25);
+    achievement7 = theory.createAchievement(18, catTau, "Do you want a Tau too?", "Reach 2 τ.", () => getTau() >= 2);
+    achievement8 = theory.createAchievement(19, catTau, "Tenacious Tau", "Reach 10 τ.", () => getTau() >= 10);
+    achievement9 = theory.createAchievement(20, catTau, "That's a tau!", "Reach 1,000 τ.", () => getTau() >= 1000);
+    theory.createAchievement(21, catTau, "What now?", "Reach 1e10 τ.", () => getTau() >= BigNumber.TEN.pow(10));
 
     secretAchievement1 = theory.createSecretAchievement(22, catSecrets, "A Bit Excessive", "Unlock all 3 variable exponents (q1, q2, and q3).", "Get the formula completed.", () => expTier.level >= 3);
     secretAchievement2 = theory.createSecretAchievement(23, catSecrets, "Useless Upgrades", "Buy 5 levels of x while keeping c2 at level 0.", "Who needs c2 anyway?", () => x.level >= 5 && c2.level == 0);
