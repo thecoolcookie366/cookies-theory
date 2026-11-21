@@ -8,7 +8,7 @@ var id = "the_cookie_formula";
 var name = "Cookie's Theory";
 var description = "Calculate the value of tau by using alpha, delta and infinity.";
 var authors = "thecoolcookie366";
-var version = 7;
+var version = 8;
 
 var alpha, delta, infinity;
 var aleph = BigNumber.ZERO;
@@ -386,7 +386,7 @@ var init = () => {
         "The box begins to overheat, spinning very quickly.\n\n" +
         "You tear out the first page of calculations and publish your notes,\n" +
         "resetting the numbers to start again with a permanent multiplier.",
-        () => theory.publicationCount >= 1);
+        () => theory.publicationMultiplier > BigNumber.TWO);
 
     chapter5 = theory.createStoryChapter(4, "Chapter 5: Superscripts",
         "Flipping the notepad over reveals pencil marks above c1, c2, and c3.\n\n" +
