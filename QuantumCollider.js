@@ -8,7 +8,7 @@ var id = "quantum_antimatter_collider";
 var name = "Quantum Collider";
 var description = "Accelerate Matter (M+) and Antimatter (A-) beams, then collide them at peak balance to annihilate pairs into Energy (E).";
 var authors = "thecoolcookie366";
-var version = 2;
+var version = 3;
 
 var matter, antimatter, energy;
 
@@ -270,34 +270,34 @@ var init = () => {
     catTau = theory.createAchievementCategory(4, "Tau");
     catSecrets = theory.createAchievementCategory(5, "Secrets");
 
-    theory.createAchievement(0, catMatter, "A Positive Particle", "Reach 1,000 M+.", () => matter.value >= 1000);
-    theory.createAchievement(1, catMatter, "Limited Matter", "Reach 9e15 M+.", () => matter.value >= BigNumber.from(9) * BigNumber.TEN.pow(15));
-    theory.createAchievement(2, catMatter, "A Third Of The Way", "Reach 1e100 M+.", () => matter.value >= BigNumber.TEN.pow(100));
-    theory.createAchievement(3, catMatter, "Matter Dimensions", "Reach 1.7976e308 M+.", () => matter.value >= BigNumber.TWO.pow(1024));
+    theory.createAchievement(0, catMatter, "A Positive Particle (1,000)", "Reach 1,000 M+.", () => matter.value >= 1000);
+    theory.createAchievement(1, catMatter, "Limited Matter (9e15)", "Reach 9e15 M+.", () => matter.value >= BigNumber.from(9) * BigNumber.TEN.pow(15));
+    theory.createAchievement(2, catMatter, "A Third Of The Way (1e100)", "Reach 1e100 M+.", () => matter.value >= BigNumber.TEN.pow(100));
+    theory.createAchievement(3, catMatter, "Matter Dimensions (1.79e308)", "Reach 1.7976e308 M+.", () => matter.value >= BigNumber.TWO.pow(1024));
 
-    theory.createAchievement(4, catAntimatter, "A Negative Particle", "Reach 1,000 A-.", () => antimatter.value >= 1000);
-    theory.createAchievement(5, catAntimatter, "Limited Antimatter", "Reach 9e15 A-.", () => antimatter.value >= BigNumber.from(9) * BigNumber.TEN.pow(15));
-    theory.createAchievement(6, catAntimatter, "A Negative Third Of The Way", "Reach 1e100 A-.", () => antimatter.value >= BigNumber.TEN.pow(100));
-    theory.createAchievement(7, catAntimatter, "Antimatter Dimensions", "Reach 1.7976e308 A-.", () => antimatter.value >= BigNumber.TWO.pow(1024));
+    theory.createAchievement(4, catAntimatter, "A Negative Particle (1,000)", "Reach 1,000 A-.", () => antimatter.value >= 1000);
+    theory.createAchievement(5, catAntimatter, "Limited Antimatter (9e15)", "Reach 9e15 A-.", () => antimatter.value >= BigNumber.from(9) * BigNumber.TEN.pow(15));
+    theory.createAchievement(6, catAntimatter, "A Negative Third Of The Way (1e100)", "Reach 1e100 A-.", () => antimatter.value >= BigNumber.TEN.pow(100));
+    theory.createAchievement(7, catAntimatter, "Antimatter Dimensions (1.79e308)", "Reach 1.7976e308 A-.", () => antimatter.value >= BigNumber.TWO.pow(1024));
 
-    theory.createAchievement(8, catCollisions, "First Steps", "Perform your first beam collision.", () => collisionCount >= 1);
-    theory.createAchievement(9, catCollisions, "Getting Used To It", "Perform 25 beam collisions.", () => collisionCount >= 25);
-    theory.createAchievement(10, catCollisions, "More Or Less", "Perform 125 beam collisions.", () => collisionCount >= 125);
-    theory.createAchievement(11, catCollisions, "You Got This!", "Perform 625 beam collisions.", () => collisionCount >= 625);
-    theory.createAchievement(12, catCollisions, "I'm Perfect!", "Trigger 5 Resonance collisions.", () => resonanceCount >= 5);
-    theory.createAchievement(13, catCollisions, "It Gets Boring", "Trigger 25 Resonance collisions.", () => resonanceCount >= 25);
+    theory.createAchievement(8, catCollisions, "First Steps (1 'b')", "Perform your first beam collision.", () => collisionCount >= 1);
+    theory.createAchievement(9, catCollisions, "Getting Used To It (25 'b')", "Perform 25 beam collisions.", () => collisionCount >= 25);
+    theory.createAchievement(10, catCollisions, "More Or Less (125 'b')", "Perform 125 beam collisions.", () => collisionCount >= 125);
+    theory.createAchievement(11, catCollisions, "You Got This! (625 'b')", "Perform 625 beam collisions.", () => collisionCount >= 625);
+    theory.createAchievement(12, catCollisions, "I'm Perfect! (5 'r')", "Trigger 5 Resonance collisions.", () => resonanceCount >= 5);
+    theory.createAchievement(13, catCollisions, "It Gets Boring (25 'r')", "Trigger 25 Resonance collisions.", () => resonanceCount >= 25);
 
-    theory.createAchievement(14, catEnergy, "Small Energy", "Reach 1,000 Energy.", () => energy.value >= 1000);
-    theory.createAchievement(15, catEnergy, "Medium Energy", "Reach 1e12 Energy.", () => energy.value >= BigNumber.TEN.pow(12));
-    theory.createAchievement(16, catEnergy, "Large Energy", "Reach 1e40 Energy.", () => energy.value >= BigNumber.TEN.pow(40));
-    theory.createAchievement(17, catEnergy, "Big Bang", "Reach 1e100 Energy.", () => energy.value >= BigNumber.TEN.pow(100));
-    theory.createAchievement(18, catEnergy, "Infinite Energy", "Reach 1e300 Energy.", () => energy.value >= BigNumber.TEN.pow(300));
+    theory.createAchievement(14, catEnergy, "Small Energy (1,000)", "Reach 1,000 Energy.", () => energy.value >= 1000);
+    theory.createAchievement(15, catEnergy, "Medium Energy (1e12)", "Reach 1e12 Energy.", () => energy.value >= BigNumber.TEN.pow(12));
+    theory.createAchievement(16, catEnergy, "Large Energy (1e40)", "Reach 1e40 Energy.", () => energy.value >= BigNumber.TEN.pow(40));
+    theory.createAchievement(17, catEnergy, "Big Bang (1e100)", "Reach 1e100 Energy.", () => energy.value >= BigNumber.TEN.pow(100));
+    theory.createAchievement(18, catEnergy, "Infinite Energy (1e300)", "Reach 1e300 Energy.", () => energy.value >= BigNumber.TEN.pow(300));
     
-    theory.createAchievement(19, catTau, "First Tau", "Reach 1.1 τ.", () => getTau() >= 1.1);
-    theory.createAchievement(20, catTau, "Double Tau", "Reach 2 τ.", () => getTau() >= 2);
-    theory.createAchievement(21, catTau, "Many, many Tau", "Reach 1,000 τ.", () => getTau() >= 1000);
-    theory.createAchievement(22, catTau, "It's Enough Tau!", "Reach 1e10 τ.", () => getTau() >= BigNumber.TEN.pow(10));
-    theory.createAchievement(23, catTau, "Once Upon A Tau...", "Reach 1e30 τ.", () => getTau() >= BigNumber.TEN.pow(30));
+    theory.createAchievement(19, catTau, "First Tau (1.1)", "Reach 1.1 τ.", () => getTau() >= 1.1);
+    theory.createAchievement(20, catTau, "Double Tau (2)", "Reach 2 τ.", () => getTau() >= 2);
+    theory.createAchievement(21, catTau, "Many, many Tau (1,000)", "Reach 1,000 τ.", () => getTau() >= 1000);
+    theory.createAchievement(22, catTau, "It's Enough Tau! (1e10)", "Reach 1e10 τ.", () => getTau() >= BigNumber.TEN.pow(10));
+    theory.createAchievement(23, catTau, "Once Upon A Tau... (1e30)", "Reach 1e30 τ.", () => getTau() >= BigNumber.TEN.pow(30));
 
     theory.createSecretAchievement(24, catSecrets, "Practically Perfect", "Collide beams when Balance is 99% or higher.", "True perfection.", () => collisionCount >= 1 && getBalanceRatio() >= BigNumber.from(0.99));
     theory.createSecretAchievement(25, catSecrets, "Theoretically Perfect", "Collide beams when Balance is 100%.", "Truer perfection.", () => collisionCount >= 1 && getBalanceRatio() >= BigNumber.from(1));
