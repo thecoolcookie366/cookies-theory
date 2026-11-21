@@ -8,7 +8,7 @@ var id = "the_cookie_formula";
 var name = "Cookie's Theory";
 var description = "Calculate the value of tau by using alpha, delta and infinity.";
 var authors = "thecoolcookie366";
-var version = 8;
+var version = 9;
 
 var alpha, delta, infinity;
 var aleph = BigNumber.ZERO;
@@ -486,7 +486,7 @@ var tick = (elapsedTime, multiplier) => {
     theory.invalidateQuaternaryValues();
 }
 
-var getPrimaryEquation = () => theory.latexSymbol + " = \\max \\alpha^{" + (tauExpBoost.level > 0 ? "0.0012" : "0.001") + "}";
+var getPrimaryEquation = () => theory.latexSymbol + " = \\min(10^{20}, \\max \\alpha^{" + (tauExpBoost.level > 0 ? "0.0012" : "0.001") + "})";
 
 var getSecondaryEquation = () => {
     let term1 = "c_1";
@@ -537,7 +537,7 @@ var getSecondaryEquation = () => {
 
 var getPublicationMultiplier = (tau) => tau.pow(40 + 5 * permPubBoost.level);
 var getPublicationMultiplierFormula = (symbol) => "{" + symbol + "}^{" + (40 + 5 * permPubBoost.level) + "}";
-var getTau = () => alpha.value.pow(tauExpBoost.level > 0 ? 0.0012 : 0.001);
+var getTau = () => alpha.value.pow(tauExpBoost.level > 0 ? 0.0012 : 0.001).min(BigNumber.TEN.pow(20));
 var get2DGraphValue = () => {
     let val = alpha.value.abs();
     if (val <= BigNumber.TEN) return alpha.value.sign * (BigNumber.ONE + val).log10().toNumber();
